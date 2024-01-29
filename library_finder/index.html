@@ -36,6 +36,7 @@
                 var resp = db.exec("SELECT lib FROM lib_all WHERE path='" + path + "'")[0];
                 if(resp) {
                     document.getElementById('error').innerText = '';
+                    document.getElementById('result').innerHTML = '';
                     resp = resp['values']
                     for(const i in resp) {
                         document.getElementById('result').innerHTML += '<tr><th scope="row">' + i + '</th><td>' + resp[i] + '</td></tr>';
