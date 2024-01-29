@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/0.3.2/js/sql.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <script>
+            let db;
+            fetch('library.db').then(response => response.arrayBuffer()).then(buffer => {
+                db = new SQL.Database(new Uint8Array(buffer));
+            });
+
+            function find() {
+                const path = document.getElementById('path').value;
+                var resp = db.exec("SELECT lib FROM lib_all WHERE path='" + path + "'")[0];
+                if(resp) {
+                    document.getElementById('error').innerText = '';
+                    resp = resp['values']
+                    for(const i in resp) {
+                        document.getElementById('result').innerHTML += '<tr><th scope="row">' + i + '</th><td>' + resp[i] + '</td></tr>';
+                    }
+                    return;
+                }
+                document.getElementById('error').innerText = 'No library found matching input.';
+                document.getElementById('result').innerHTML = '';
+            }
+        </script>
+        <div class="input-group mb-3" style="margin: 0 auto; width: 50vw; padding-top: 30vh;">
+            <input class="form-control" type="text" id="path" placeholder="virtual/path/find.obj">
+            <button class="btn btn-outline-secondary" type="button" onclick="find();">search</button>
+        </div>
+        <div style="margin: 0 auto; width: 50vw; padding-top: 10vh;">
+            <h3>Result</h3>
+            <p id="error" style="color: red;"></p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">library</th>
+                    </tr>
+                </thead>
+                <tbody id="result">
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
