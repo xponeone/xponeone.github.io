@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>X-Plane Library Finder</title>
+        <meta charset="utf-8">
+        <meta name="referrer" content="unsafe-url" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+        <script async src="https://fundingchoicesmessages.google.com/i/pub-6912747619756037?ers=1" nonce="62bDlWO3KN_gD1B9PKcSzA"></script><script nonce="62bDlWO3KN_gD1B9PKcSzA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+        <script>
+            const urlParams = new URL(location.href).searchParams;
+            const f = urlParams.get('f');
+            const http = new XMLHttpRequest();
+            var href;
+            http.open('GET', 'https://raw.githubusercontent.com/xponeone/XPSM_V3/main/version.json');
+            http.send()
+            http.onload = function() {
+                var jsonData = JSON.parse(http.response);
+                if(f) {
+                    if (f == 'installer') href = jsonData['installer_link'];
+                    else if (f == 'zip') href = jsonData['zip_link'];
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+            <div class="container-fluid" style="margin: 0 auto; width: 50vw; min-width: 300px;">
+                <a class="navbar-brand" href="/">XPONEONE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" href="#">Downlaod</a>
+                        <a class="nav-link" href="/library_finder">Library Checker</a>
+                        <a class="nav-link" href="https://github.com/xponeone">Github</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div style="margin: 0 auto; width: 50vw; min-width: 300px; margin-top: 20vh; padding: 50px; border-radius: 25px;" class="bg-light">
+            <div id="remainTime" style="text-align: center;">
+
+            </div>
+            <div style="margin: 0 auto; width: 300px; height: 250px; padding-top: 50px; padding-bottom: 25px;">
+                <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-3cpp4ngzEKGTCkAx" data-ad-width="300" data-ad-height="250"></ins>
+            </div>
+        </div>
+        <script>
+            var remainTime = 6;
+            const timer = setInterval(downloadHandler, 1000);
+            function downloadHandler() {
+                if (remainTime > 0) {
+                    remainTime--;
+                    document.getElementById('remainTime').innerHTML = '<h5>Your download will start automaticaly in ' + remainTime + ' sceonds...</h5>';
+                    return;
+                }
+                clearInterval(timer);
+                downlaod();
+            }
+            function downlaod() {
+                document.getElementById('remainTime').innerHTML = '<h4>Thanks for download!</h4>';
+                document.getElementById('remainTime').innerHTML += '<a href="' + href + '" id="download">If the download does not start automatically, please click here</a>'
+                document.getElementById('download').click();
+            }
+        </script>
+        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+    </body>
+</html>
