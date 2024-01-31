@@ -5,29 +5,13 @@
         <meta name="referrer" content="unsafe-url" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+        <link href="/neumorphism.css" rel="stylesheet">
         <script async src="https://fundingchoicesmessages.google.com/i/pub-6912747619756037?ers=1" nonce="62bDlWO3KN_gD1B9PKcSzA"></script><script nonce="62bDlWO3KN_gD1B9PKcSzA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
-        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
-        <script>
-            const urlParams = new URL(location.href).searchParams;
-            const f = urlParams.get('f');
-            const http = new XMLHttpRequest();
-            var href;
-            http.open('GET', 'https://raw.githubusercontent.com/xponeone/XPSM_V3/main/version.json');
-            http.send()
-            http.onload = function() {
-                var jsonData = JSON.parse(http.response);
-                if(f) {
-                    if (f == 'installer') href = jsonData['installer_link'];
-                    else if (f == 'zip') href = jsonData['zip_link'];
-                }
-            }
-        </script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg fixed-top np-nav">
             <div class="container-fluid" style="margin: 0 auto; width: 50vw; min-width: 300px;">
-                <a class="navbar-brand" href="/">XPONEONE</a>
+                <a class="navbar-brand np-text" href="/">XPONEONE</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -40,31 +24,42 @@
                 </div>
             </div>
         </nav>
-        <div style="margin: 0 auto; width: 50vw; min-width: 300px; margin-top: 20vh; padding: 50px; border-radius: 25px;" class="bg-light">
-            <div id="remainTime" style="text-align: center;">
-
-            </div>
-            <div style="margin: 0 auto; width: 300px; padding-top: 50px;">
+        <div class="np-flat" style="margin: 0 auto; width: 50vw; min-width: 300px; margin-top: 20vh; padding: 50px; border-radius: 25px;" class="bg-light">
+            <div id="remainTime" style="text-align: center;"></div>
+            <div class="np-flat" style="padding: 10px; margin: 0 auto; margin-top: 50px; width: 320px; height: 270px;">
                 <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-FMDQVsy1tJcQgStv" data-ad-width="300" data-ad-height="250"></ins>
             </div>
         </div>
         <script>
+            const urlParams = new URL(location.href).searchParams;
+            const f = urlParams.get('f');
             if (!f) {
-                document.getElementById('remainTime').innerHTML = '<h3>Hmm... that\'s not the right link.</h3><a href="/download">return to download page</a>';
+                document.getElementById('remainTime').innerHTML = '<h3 class="np-text">Hmm... that\'s not the right link.</h3><a href="/download">return to download page</a>';
             } else if(f == 'installer' || f == 'zip') {
-                var remainTime = 6;
+                var remainTime = 5;
+                document.getElementById('remainTime').innerHTML = '<h5 class="np-text">Your download will start automaticaly in ' + remainTime + ' sceonds...</h5>';
                 const timer = setInterval(downloadHandler, 1000);
+
+                let href;
+                fetch('/new.json', {cache: 'no-store'})
+                .then(response => response.json())
+                .then(data => {
+                    if(f == 'installer') href = data.installer_link;
+                    else if(f == 'zip') href = data.zip_link;
+                });
+
                 function downloadHandler() {
-                    if (remainTime > 0) {
+                    if (remainTime > 1) {
                         remainTime--;
-                        document.getElementById('remainTime').innerHTML = '<h5>Your download will start automaticaly in ' + remainTime + ' sceonds...</h5>';
+                        document.getElementById('remainTime').innerHTML = '<h5 class="np-text">Your download will start automaticaly in ' + remainTime + ' sceonds...</h5>';
                         return;
                     }
                     clearInterval(timer);
                     downlaod();
                 }
+
                 function downlaod() {
-                    document.getElementById('remainTime').innerHTML = '<h4>Thanks for download!</h4>';
+                    document.getElementById('remainTime').innerHTML = '<h4 class="np-text">Thanks for download!</h4>';
                     document.getElementById('remainTime').innerHTML += '<a href="' + href + '" id="download">If the download does not start automatically, please click here</a>'
                     document.getElementById('download').click();
                 }

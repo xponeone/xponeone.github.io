@@ -1,0 +1,16 @@
+{
+	"version": "3.1",
+	"installer_link" : "https://github.com/xponeone/XPSM_V3/releases/download/v3.1/Setup_XPSMV3.1.exe",
+  	"zip_link" : "https://github.com/xponeone/XPSM_V3/releases/download/v3.1/XPSM.v3.1.zip",
+  	"notification": ["XPSM v3.1 is now available!"],
+  	"change_log": [
+  		{
+  			"version": "3.1",
+  			"detail": ["bug fix"]
+  		},
+  		{
+  			"version": "3.0",
+  			"detail": ["First release"]
+  		}
+  	]
+}

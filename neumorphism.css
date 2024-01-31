@@ -1,0 +1,104 @@
+.np-nav {
+	background: rgba(236, 240, 243, 0.1);
+	backdrop-filter: blur(5px);
+	box-shadow: 0 2px 4px #b1b4b6;
+}
+
+.np-flat {
+	padding: 10px;
+	border-radius: 20px;
+	background: #ecf0f3;
+	box-shadow: 10px 10px 20px #b1b4b6, -10px -10px 20px #ffffff;
+}
+
+.np-pressed {
+	border-radius: 20px;
+	background: #ecf0f3;
+	box-shadow: inset 10px 10px 20px #b1b4b6, inset -10px -10px 20px #ffffff;
+}
+
+.np-input {
+	border-radius: 20px;
+	background: #ecf0f3;
+	box-shadow: inset 4px 4px 8px #b1b4b6, inset -4px -4px 8px #ffffff;
+	border: 0;
+	outline: 0;
+	padding: 15px;
+	font-size: 20px;
+	&:focus {
+		box-shadow:  inset 2px 2px 4px #b1b4b6, inset -2px -2px 4px #ffffff;
+	}
+}
+
+.np-button {
+	border-radius: 20px;
+	background: #ecf0f3;
+	box-shadow: 4px 4px 8px #b1b4b6, -4px -4px 8px #ffffff;
+	margin: 4px;
+	border: 0;
+	outline: 0;
+	padding-left: 11px;
+	padding-right: 11px;
+	height: 40px;
+	font-size: 18px;
+	color: #575757;
+	text-shadow: 2px 2px 2px #ffffff;
+	&:hover {
+		box-shadow: 2px 2px 4px #b1b4b6, -2px -2px 4px #ffffff;
+	}
+	&:active {
+		box-shadow: inset 2px 2px 4px #b1b4b6, inset -2px -2px 4px #ffffff;
+	}
+}
+
+.np-button-blue {
+	border-radius: 20px;
+	background: #0d6efd;
+	box-shadow: 4px 4px 8px #b1b4b6, -4px -4px 8px #ffffff;
+	margin: 4px;
+	border: 0;
+	outline: 0;
+	padding-left: 11px;
+	padding-right: 11px;
+	height: 40px;
+	font-size: 18px;
+	color: #ecf0f3;
+	text-shadow: 2px 2px 2px #108aff;
+	&:hover {
+		box-shadow: 2px 2px 4px #b1b4b6, -2px -2px 4px #ffffff;
+	}
+	&:active {
+		box-shadow: inset 2px 2px 4px #0a53be, inset -2px -2px 4px #108aff;
+	}
+}
+
+.np-button-small-blue {
+	display: flex;
+	border-radius: 15px;
+	background: #0d6efd;
+	box-shadow: 4px 4px 8px #b1b4b6, -4px -4px 8px #ffffff;
+	margin: 4px;
+	border: 0;
+	outline: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 30px;
+	font-size: 18px;
+	color: #ecf0f3;
+	text-shadow: 2px 2px 2px #108aff;
+	&:hover {
+		box-shadow: 2px 2px 4px #b1b4b6, -2px -2px 4px #ffffff;
+	}
+	&:active {
+		box-shadow: inset 2px 2px 4px #0a53be, inset -2px -2px 4px #108aff;
+	}
+}
+
+.np-text {
+	color: #575757;
+	text-shadow: 2px 2px 2px #ffffff;
+}
+
+body {
+	background: #ecf0f3;
+}

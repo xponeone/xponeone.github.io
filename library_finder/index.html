@@ -6,13 +6,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/0.3.2/js/sql.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <link href="/neumorphism.css" rel="stylesheet">
         <script async src="https://fundingchoicesmessages.google.com/i/pub-6912747619756037?ers=1" nonce="62bDlWO3KN_gD1B9PKcSzA"></script><script nonce="62bDlWO3KN_gD1B9PKcSzA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg fixed-top np-nav">
             <div class="container-fluid" style="margin: 0 auto; width: 50vw; min-width: 300px;">
-                <a class="navbar-brand" href="/">XPONEONE</a>
+                <a class="navbar-brand np-text" href="/">XPONEONE</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -25,36 +25,37 @@
                 </div>
             </div>
         </nav>
-        <h1 style="margin: 0 auto; width: 50vw; min-width: 300px; padding-top: 20vh;">Library Finder</h1>
-        <h6 id="version" style="margin: 0 auto; width: 50vw; min-width: 300px; color: lightgray; padding-top: 10vh;">db ver:</h6>
-        <div class="input-group mb-3" style="margin: 0 auto; width: 50vw; min-width: 300px;">
-            <input class="form-control" type="text" id="path" placeholder="virtual/path/to/find.obj">
-            <button class="btn btn-outline-secondary" type="button" onclick="find();">search</button>
+        <h1 class="np-text" style="margin: 0 auto; width: 50vw; min-width: 300px; margin-top: 20vh;">Library Finder</h1>
+        <h6 class="np-text" id="version" style="padding-left: 10px; margin: 0 auto; width: 50vw; min-width: 300px; color: lightgray; margin-top: 10vh;">db ver:</h6>
+        <div style="margin: 0 auto; width: 50vw; min-width: 300px;">
+            <input class="np-input np-text" style="width: calc(100% - 100px); height: 40px;" type="text" id="path" placeholder="virtual/path/to/find.obj">
+            <button class="np-button-blue" style="width: 80px; height: 40px; font-size: 20px; margin-left: 10px;" onclick="find();">search</button>
         </div>
-        <div style="margin: 0 auto; width: 50vw; min-width: 300px; text-align: right;">
+        <div style="padding-right: 10px; margin: 0 auto; width: 50vw; min-width: 300px; text-align: right;">
             <a href="#desc">
-                <h6>how to use</h6>
+                <h6 style="text-shadow: 1px 1px 1px #ffffff;">how to use</h6>
             </a>
         </div>
-        <div style="margin: 0 auto; width: 50vw; padding-top: 10vh; padding-bottom: 10vh; min-width: 300px;">
+        <div class="np-flat np-text" style="padding: 10px; margin: 0 auto; width: 50vw; margin-top: 10vh; margin-bottom: 10vh; min-width: 300px;">
             <h3>Result</h3>
             <p id="error" style="color: red;"></p>
-            <table class="table">
-                <thead>
+            <table class="np-text" style="width: 100%; padding:10px">
+                <thead style="border-bottom: 1px solid;">
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col" style="width: 30px;">#</th>
                         <th scope="col">library</th>
+                        <th scope="col" style="width: 50px; text-align: center;">link</th>
                     </tr>
                 </thead>
                 <tbody id="result">
                 </tbody>
             </table>
         </div>
-        <div style="margin: 0 auto; width: 300px; height: 250px;">
+        <div class="np-flat" style="padding: 10px; margin: 0 auto; width: 320px; height: 270px;">
             <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-3cpp4ngzEKGTCkAx" data-ad-width="300" data-ad-height="250"></ins>
         </div>
-        <div id="desc" style="margin: 0 auto; width: 50vw; min-width: 300px; padding-top: 10vh; padding-bottom: 30vh;">
-            <div style="padding-bottom: 100px;">
+        <div id="desc" style="margin: 0 auto; width: 50vw; min-width: 300px; padding-top: 10vh; margin-bottom: 30vh;">
+            <div class="np-flat np-text" style="margin-bottom: 100px;">
                 <h3 style="word-break: break-all;">What is the virtual path?</h3>
                 <h3 style="word-break: break-all;">virtual path가 무엇인가요?</h3>
                 <hr>
@@ -62,7 +63,7 @@
                 <br>
                 <h6 style="word-break: break-all;">라이브러리 파일은 시너리 패키지의 파일을 <b>virtual path</b>에 맵핑하여 작동합니다. 하나의 <b>virtual path</b>는 여러 개의 그래픽 리소스에 맵핑할 수 있습니다. 이 경우 X-Plane은 시너리의 다양성을 위해 랜덤하게 선택합니다.</h6>
             </div>
-            <div style="padding-bottom: 100px;">
+            <div class="np-flat np-text" style="padding: 10px; margin-bottom: 100px;">
                 <h3 style="word-break: break-all;">How can I find the virtual path of missing library?</h3>
                 <h3 style="word-break: break-all;">어떻게 누락된 라이브러리의 virtual path를 찾을 수 있나요?</h3>
                 <hr>
@@ -70,7 +71,7 @@
                 <br>
                 <h6 style="word-break: break-all;">라이브러리 누락으로 인해 에러가 발생한 경우, Log.txt에서 로딩에 실패한 <b>virtual path</b>를 확인할 수 있습니다. <b>virtual path</b>는 "Failed to find resource", "Unable to locate object" 등의 키워드로 검색하면 쉽게 찾을 수 있습니다.</h6>
             </div>
-            <div>
+            <div class="np-flat np-text" style="padding: 10px; margin-bottom: 100px;">
                 <h3 style="word-break: break-all;">How to use?</h3>
                 <h3 style="word-break: break-all;">어떻게 사용하나요?</h3>
                 <hr>
@@ -81,20 +82,21 @@
         <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
         <script>
             let db;
-            fetch('library.db').then(response => response.arrayBuffer()).then(buffer => {
-                db = new SQL.Database(new Uint8Array(buffer));
+            fetch('/library.db').then(response => response.arrayBuffer()).then(data => {
+                db = new SQL.Database(new Uint8Array(data));
                 document.getElementById('version').innerText += db.exec("SELECT * FROM info")[0]['values'][0][1];
             });
 
             function find() {
                 const path = document.getElementById('path').value;
-                var resp = db.exec("SELECT lib FROM lib_all WHERE path='" + path + "'")[0];
+                resp = db.exec("SELECT lib FROM lib_all WHERE path='" + path + "'")[0];
                 if(resp) {
+                    resp = resp['values'];
                     document.getElementById('error').innerText = '';
                     document.getElementById('result').innerHTML = '';
-                    resp = resp['values']
                     for(const i in resp) {
-                        document.getElementById('result').innerHTML += '<tr><th scope="row">' + i + '</th><td>' + resp[i] + '</td></tr>';
+                        link = db.exec("SELECT link FROM links WHERE lib='" + resp[i] + "'")[0]['values'][0][0];
+                        document.getElementById('result').innerHTML += '<tr><td>' + i + '</td><td>' + resp[i] + '</td><td><a href="' + link + '" target="_blank"><button class="np-button-small-blue" style="margin: 0 auto;">go</button></a></td></tr>';
                     }
                     return;
                 }

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /download/download.html
+Disallow: /library.db
+Disallow: /neumorphism.css
+Disallow: /new.json
+Allow: /
