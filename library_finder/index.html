@@ -96,7 +96,8 @@
                     document.getElementById('result').innerHTML = '';
                     for(const i in resp) {
                         link = db.exec("SELECT link FROM links WHERE lib='" + resp[i] + "'")[0]['values'][0][0];
-                        document.getElementById('result').innerHTML += '<tr><td>' + i + '</td><td>' + resp[i] + '</td><td><a href="' + link + '" target="_blank"><button class="np-button-small-blue" style="margin: 0 auto;">go</button></a></td></tr>';
+                        if(link != '') document.getElementById('result').innerHTML += '<tr><td>' + i + '</td><td>' + resp[i] + '</td><td><a href="' + link + '" target="_blank"><button class="np-button-small-blue" style="margin: 0 auto;">go</button></a></td></tr>';
+                        else document.getElementById('result').innerHTML += '<tr><td>' + i + '</td><td>' + resp[i] + '</td><td></td></tr>';
                     }
                     return;
                 }
