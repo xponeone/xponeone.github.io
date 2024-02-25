@@ -89,15 +89,26 @@
 
             function find() {
                 const path = document.getElementById('path').value;
+                resp11 = db.exec("SELECT * FROM def11 WHERE path='" + path + "'")[0];
+                resp12 = db.exec("SELECT * FROM def12 WHERE path='" + path + "'")[0];
                 resp = db.exec("SELECT lib FROM lib_all WHERE path='" + path + "'")[0];
-                if(resp) {
-                    resp = resp['values'];
+                if(resp11 || resp12 || resp) {
                     document.getElementById('error').innerText = '';
                     document.getElementById('result').innerHTML = '';
-                    for(const i in resp) {
-                        link = db.exec("SELECT link FROM links WHERE lib='" + resp[i] + "'")[0]['values'][0][0];
-                        if(link != '') document.getElementById('result').innerHTML += '<tr><td>' + i + '</td><td>' + resp[i] + '</td><td><a href="' + link + '" target="_blank"><button class="np-button-small-blue" style="margin: 0 auto;">go</button></a></td></tr>';
-                        else document.getElementById('result').innerHTML += '<tr><td>' + i + '</td><td>' + resp[i] + '</td><td></td></tr>';
+                    let cnt = 0;
+                    if(resp11) {
+                        document.getElementById('result').innerHTML += '<tr><td>' + cnt++ + '</td><td>X-Plane 11 Default</td><td></td></tr>';
+                    }
+                    if(resp12) {
+                        document.getElementById('result').innerHTML += '<tr><td>' + cnt++ + '</td><td>X-Plane 12 Default</td><td></td></tr>';
+                    }
+                    if(resp) {
+                        resp = resp['values'];
+                        for(const i in resp) {
+                            link = db.exec("SELECT link FROM links WHERE lib='" + resp[i] + "'")[0]['values'][0][0];
+                            if(link != '') document.getElementById('result').innerHTML += '<tr><td>' + cnt++ + '</td><td>' + resp[i] + '</td><td><a href="' + link + '" target="_blank"><button class="np-button-small-blue" style="margin: 0 auto;">go</button></a></td></tr>';
+                            else document.getElementById('result').innerHTML += '<tr><td>' + cnt++ + '</td><td>' + resp[i] + '</td><td></td></tr>';
+                        }
                     }
                     return;
                 }
